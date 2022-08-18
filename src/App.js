@@ -8,22 +8,39 @@ import { useState } from 'react';
 function App() {
 
   // valor presente - valor que eu peguei emprestado
-  const [presentValue, SetPresentValue] = useState('');
+  const [presentValue, SetPresentValue] = useState(null);
+  // saldo devedor
+  const [debitBalance, SetDebitBalance] = useState(null);
   // numero de parcelas para pagar mensalmente
-  const [numberInstallment, SetNumberInstallment] = useState(0);
-  // preço das parcelas
-  const [priceInstallment, SetPriceInstallment] = useState('');
+  let [numberInstallment, SetNumberInstallment] = useState(null);
+  // preço da parcela
+  const [priceInstallment, SetPriceInstallment] = useState(null);
   // taxa porcentual
-  const [ratePercentual, SetRatePercentual] = useState('');
+  const [ratePercentual, SetRatePercentual] = useState(null);
   // juros
-  const [fees, SetFees] = useState('');
+  const [fees, SetFees] = useState(null);
   // amortizações
-  const [amortization, SetAmortization] = useState('');
+  const [amortization, SetAmortization] = useState(null);
+
+
+  class ItemLista {
+    constructor(id, shouldPay, valueAmortization, valueFees, valueDebitBalance) {
+      this.id = id
+      this.shouldPay = shouldPay
+      this.valueAmortization = valueAmortization
+      this.valueFees = valueFees
+      this.valueDebitBalance = valueDebitBalance
+    }
+  }
 
   const calculateAmortization = (e) => {
     e.preventDefault();
+
     console.log("calculando...")
+
+
   }
+
   return (
     <div className="App bg-gray-800 h-screen flex justify-center flex-col">
       <a className="text-slate-400 uppercase" href="#home">gostou do projeto? fale comigo.</a>
