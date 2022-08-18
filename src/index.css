@@ -4,12 +4,6 @@
 
 @import url("https://use.typekit.net/eqk1fen.css");
 
-/* For vars colors */
-:root {
-  --title-primary: #f3f3f3;
-  --paragraphs-primary: #cecece;
-}
-
 body {
   margin: 0;
   font-family: source-sans-pro, sans-serif;
