@@ -10,11 +10,11 @@ function App() {
   // valor presente - valor que eu peguei emprestado
   const [presentValue, SetPresentValue] = useState('');
   // numero de parcelas para pagar mensalmente
-  const [numberInstallment, SetNumberInstallment] = useState('');
+  const [numberInstallment, SetNumberInstallment] = useState(0);
   // preço das parcelas
   const [priceInstallment, SetPriceInstallment] = useState('');
   // taxa porcentual
-  const [ratePercentual, setRatePercentual] = useState('');
+  const [ratePercentual, SetRatePercentual] = useState('');
   // juros
   const [fees, SetFees] = useState('');
   // amortizações
@@ -30,23 +30,38 @@ function App() {
       <h1 className="text-slate-100 font-bold">Simulador para Amortização Financeira 2022</h1>
       <form className="flex flex-col" onSubmit={calculateAmortization} >
         <label className="text-gray-400">
-          Quanto você pegou emprestado?
-          <input type="number" name="presentValue"></input>
+          Quanto você pegou emprestado? R$
+          <input type="number" placeholder="Ex: 30.000" name="presentValue" onChange={(event) => SetPresentValue(event.target.value)}></input>
         </label>
         <label className="text-gray-400">
           Para serem pagos em quantas parcelas?
-          <input type="number" name="numberInstallment"></input>
+          <input type="number" placeholder="Ex: 12" name="numberInstallment" onChange={(event) => SetNumberInstallment(event.target.value)}></input>
         </label>
         <label className="text-gray-400">
-          Qual foi a taxa de juros mensalmente?
-          <input type="number" name="ratePercentual"></input>
+          Qual foi é a taxa de juros mensalmente cobrada em porcentagem? 
+          <input type="number" placeholder="Ex: 3" name="ratePercentual" onChange={(event) => SetRatePercentual(event.target.value)}></input>
         </label>
         <input type="submit" value="Calcular" className='bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded'/>
       </form>
-      <div>
-        <ul>
-
-        </ul>
+      <div className='text-gray-400'>
+        <table>
+          <thead>
+            <tr>
+              <th>Número da Parcela</th>
+              <th>Você deve Pagar</th>
+              <th>Amortização</th>
+              <th>Valor do Juros neste Mês</th>
+              <th>Você ainda deve</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
+              <td>Malcolm Lockyer</td>
+              <td>1961</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   );
