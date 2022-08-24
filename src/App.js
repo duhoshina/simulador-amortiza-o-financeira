@@ -20,10 +20,10 @@ function App() {
   const [debitBalance, SetDebitBalance] = useState(0);
   let [numberInstallment, SetNumberInstallment] = useState(0);
   const [ratePercentual, SetRatePercentual] = useState();
-
-  const ListaItems = []
-
+  const [listItems, SetListItems] = useState([]);
+  
   const calculateAmortization = () => {
+    const currentListaItems = []
     console.log("calculando...")
 
     let debitValor = debitBalance
@@ -40,11 +40,11 @@ function App() {
 
       let Item = new ItemLista(index, shouldPay, valueFees, debitValor)
 
-      ListaItems.push(Item)
+      currentListaItems.push(Item)
       
     }
 
-    console.log(ListaItems)
+    SetListItems(currentListaItems)
 
   }
 
@@ -86,6 +86,13 @@ function App() {
             <div className="flex justify-center">
               <button onClick={calculateAmortization} className="p-2 border w-1/4 rounded-md bg-gray-800 text-white">Calcular</button>
             </div>
+            <ul>
+              {listItems.map((item) => (
+                <li>
+                  {item.id} - {item.shouldPay} - {item.valueFees}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
