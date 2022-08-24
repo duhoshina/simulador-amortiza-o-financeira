@@ -3,10 +3,6 @@ import React from "react";
 export default function Modal({numberInstallment, listItems, calculateAmortization}) {
   const [showModal, setShowModal] = React.useState(false);
 
-  let totalPrice = 0
-  let totalFees = 0
-  let totalDebitBalance = 0
-
   const activateBtn = () => {
     setShowModal(true)
     calculateAmortization()
