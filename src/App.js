@@ -2,9 +2,9 @@ import './App.css';
 
 // components
 
-
 // hooks
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+
 
 class ItemLista {
   constructor(id, shouldPay, valueFees, valueDebitBalance) {
@@ -26,20 +26,22 @@ function App() {
   const calculateAmortization = () => {
     console.log("calculando...")
 
-    for (let index = 0; index < numberInstallment; index++) {
-      const amortization = debitBalance / numberInstallment
+    let debitValor = debitBalance
 
-      let valueFees = debitBalance * ratePercentual
+    // amortizacao 3000
+    const amortization = debitBalance / numberInstallment
+
+    for (let index = 0; index < numberInstallment; index++) {
+      let valueFees = debitValor * ratePercentual
       
       let shouldPay = amortization + valueFees
 
-      let Item = new ItemLista(index, shouldPay, valueFees, debitBalance)
+      debitValor = debitValor - amortization
+
+      let Item = new ItemLista(index, shouldPay, valueFees, debitValor)
 
       ListaItems.push(Item)
-
-      let newDebitBalance = debitBalance - amortization
-
-      SetDebitBalance(newDebitBalance)
+      
     }
 
     console.log(ListaItems)
