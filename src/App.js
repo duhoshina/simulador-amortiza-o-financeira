@@ -23,8 +23,10 @@ function App() {
   const [listItems, SetListItems] = useState([]);
   
   const calculateAmortization = () => {
-    const currentListaItems = []
     console.log("calculando...")
+
+
+    const currentListaItems = [{id: -1, valueDebitBalance: debitBalance}]
 
     let debitValor = debitBalance
 
@@ -78,21 +80,30 @@ function App() {
               </div>
             <div>
               <select className="border p-2 rounded">
+                <option>Sistema de Amortização Constante - SAC</option>
                 <option>Sistema Price - PRICE</option>
                 <option>Sistema de Amortização Misto - SAM</option>
-                <option>Sistema de Amortização Constante - SAC</option>
               </select>
             </div>
             <div className="flex justify-center">
-              <button onClick={calculateAmortization} className="p-2 border w-1/4 rounded-md bg-gray-800 text-white">Calcular</button>
+              <button onClick={calculateAmortization} className="p-2 border w-1/4 rounded-md transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 ... text-white ">Calcular</button>
             </div>
-            <ul>
+            <table className='text-center'>
+              <tr>
+                <th>Parcela</th>
+                <th>Preço</th>
+                <th>Juros</th>
+                <th>Saldo Devedor</th>
+              </tr>
               {listItems.map((item) => (
-                <li>
-                  {item.id} - {item.shouldPay} - {item.valueFees}
-                </li>
+                <tr>
+                  <td>{item.id+1}</td>
+                  <td>{item.shouldPay}</td>
+                  <td>{item.valueFees}</td>
+                  <td>{item.valueDebitBalance}</td>
+                </tr>
               ))}
-            </ul>
+            </table>
           </div>
         </div>
       </div>
